@@ -1,0 +1,142 @@
+/* Base styling from the original code */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #1a202c;
+  /* Dark gray background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 1rem;
+  /* Added padding for smaller screens */
+}
+
+canvas {
+  border: 2px solid #4a5568;
+  /* Darker slate border */
+  border-radius: 0.5rem;
+  /* rounded-lg */
+  background-color: #000000;
+  /* Black background for drawing area */
+  cursor: crosshair;
+}
+
+/* Custom loader for prediction */
+.loader {
+  border: 4px solid #f3f3f3;
+  /* Light grey */
+  border-top: 4px solid #3498db;
+  /* Blue */
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: spin 2s linear infinite;
+  display: none;
+  /* Hidden by default */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Styles for the probability bars */
+.bar-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.1rem;
+  /* Further reduced margin between bars */
+  width: 100%;
+  /* Ensure bars take full width */
+}
+
+.bar-label {
+  width: 1.2rem;
+  /* Adjusted width for label */
+  text-align: right;
+  margin-right: 0.4rem;
+  /* Adjusted margin */
+  font-weight: bold;
+  color: #d1d5db;
+  /* Light gray text */
+  font-size: 0.75rem;
+  /* Smaller font size (text-xs) */
+}
+
+.bar-label.predicted-label {
+  color: #48bb78;
+  /* Green for predicted label */
+  font-size: 0.85rem;
+  /* Slightly larger for emphasis */
+  font-weight: 800;
+  /* Extra bold */
+}
+
+.bar-wrapper {
+  flex-grow: 1;
+  /* Allows bar to expand */
+  height: 0.75rem;
+  /* Shorter bar height */
+  background-color: #4a5568;
+  /* Gray bar background */
+  border-radius: 0.25rem;
+  overflow: hidden;
+  /* Hide overflowing progress */
+  position: relative;
+  /* Indicate hoverability */
+}
+
+/* Only apply background color if width is > 0% */
+.bar-progress {
+  height: 100%;
+  background-color: transparent;
+  /* Default to transparent */
+  transition: width 0.5s ease-out;
+  /* Smooth transition for bar growth */
+}
+
+.bar-progress.active {
+  background-color: #63b3ed;
+  /* Blue for progress when active */
+}
+
+.bar-progress.predicted {
+  background-color: #48bb78;
+  /* Green for the predicted bar */
+}
+
+/* Styles for the hover floating value */
+.hover-value {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  /* Dark semi-transparent background */
+  color: white;
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+  font-size: 0.65rem;
+  /* Small font size */
+  font-weight: 600;
+  white-space: nowrap;
+  /* Prevent wrapping */
+  opacity: 0;
+  /* Initially hidden */
+  transition: opacity 0.2s ease-in-out;
+  pointer-events: none;
+  /* Allow mouse events to pass through to the bar */
+  z-index: 10;
+  /* Ensure it appears above other elements */
+}
+
+.bar-wrapper:hover .hover-value {
+  opacity: 1;
+  /* Show on hover */
+}
