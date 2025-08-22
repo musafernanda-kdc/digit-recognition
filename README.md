@@ -18,8 +18,9 @@ The project consists of a Flask web application that allows users to draw a digi
     ```
 
 ## Usage
+1. Run the `digit-recognition.ipynb` notebook to get the model file
 
-1.  Run the Flask application:
+2.  Run the Flask application:
     ```bash
     python main.py
     ```
